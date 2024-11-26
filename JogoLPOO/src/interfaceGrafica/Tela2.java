@@ -57,7 +57,7 @@ public class Tela2 extends JPanel {
         String[] nomesCriaturas = new String[cc.getCriaturas().size()];
         int contador1 = 0;
         for (Criatura c : cc.getCriaturas()) {
-            nomesCriaturas[contador1] = c.getNome() + " | Custo: " + c.getCustoMana();
+            nomesCriaturas[contador1] = c.getNome() + " | Custo: " + c.getCustoMana()+" | A: "+c.getAtaque()+" D: "+c.getDefesa();
             contador1++;
         }
         JList<String> listCriaturas = new JList<>(nomesCriaturas);

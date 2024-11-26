@@ -113,6 +113,7 @@ public class Jogador {
 	public int comprarCarta() {
 		if (this.deck.size() > 0) {
 			this.mao.add(this.deck.remove(0)); // remove a carta do deck e adiciona à mão
+			System.out.println("Carta comprada!");
 			return 1; // indicar sucesso
 		}
 		return 0; // indica que não há mais cartas no deck
@@ -154,14 +155,16 @@ public class Jogador {
 		return nivel;
 	}
 
-	public void aumentarXp() { // lógica de progressão de xp e nível
-		this.xp += 50 + (int)(Math.random() * 51); // a cada partida o jogador pode ganhar de 50 a 100 de xp
+	public int aumentarXp() { // lógica de progressão de xp e nível
+		int xpAumentado = 50 + (int)(Math.random() * 51); // a cada partida o jogador pode ganhar de 50 a 100 de xp
+		this.xp += xpAumentado;
 		if (this.xp >= 48 + 2 * this.nivel * this.nivel) {
 			this.nivel++;
 			this.xp -= 48 + 2 * this.nivel * this.nivel; 
 			System.out.println("Nível aumentado!");
 		}
 		salvarDados();
+		return xpAumentado;
 	}
 
 	// métodos que vou usar no campo de batalha
