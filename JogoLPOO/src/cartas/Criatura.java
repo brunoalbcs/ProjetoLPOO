@@ -5,8 +5,8 @@ public class Criatura extends Carta {
 	private int defesa;
 	private String passiva;
 	
-	public Criatura(String nome, int custoMana, int ataque, int defesa, String passiva) {
-		super(nome, custoMana);
+	public Criatura(String nome, int custoMana, int ataque, int defesa, String passiva, String caminho) {
+		super(nome, custoMana, caminho);
 		this.ataque = ataque;
 		this.defesa = defesa; 
 		this.passiva = passiva;
@@ -14,7 +14,7 @@ public class Criatura extends Carta {
 	
 	// contrutor cópia
 	public Criatura(Criatura x) {
-		super(x.getNome(), x.getCustoMana());
+		super(x.getNome(), x.getCustoMana(), x.getCaminho());
 		this.ataque = x.getAtaque();
 		this.defesa = x.getDefesa(); 
 		this.passiva = x.getPassiva();

@@ -25,7 +25,7 @@ public class Jogador {
 	public Jogador(String nome) {
 		this.nome = nome;
 		this.xp = 0;
-		this.nivel = 0;
+		this.nivel = 1;
 		this.deck = new ArrayList<Carta>();
 		this.mao = new ArrayList<Carta>();
 		this.campo = new ArrayList<Carta>();
@@ -103,43 +103,6 @@ public class Jogador {
 	    
 	}
 	
-	public void criarDeck() {
-		CriarCarta c = new CriarCarta();
-		ArrayList<Carta> todasAsCartas = c.getTodasAsCartas();
-	    ArrayList<Carta> novoDeck = new ArrayList<>();
-	    @SuppressWarnings("resource") // por algum motivo não posso fechar o scanner no fim do código
-		Scanner scanner = new Scanner(System.in);
-	    System.out.println("\nJogador: "+this.nome+"\nEscolha 30 cartas para o seu deck.");
-	    
-	    
-	    for (int i = 0; i < todasAsCartas.size(); i++) {
-	        System.out.println((i+1) + ". " + todasAsCartas.get(i).getNome()); 
-	    }
-
-	    while (novoDeck.size() < 5) {
-	        System.out.print("Escolha o índice da carta para adicionar ao deck: ");
-	        int escolha = scanner.nextInt() - 1;
-
-	        if (escolha >= 0 && escolha < todasAsCartas.size()) {
-	            Carta cartaEscolhida = todasAsCartas.get(escolha);
-
-	            // Verifica o tipo da carta e adiciona uma cópia ao deck com o construtor cópia da classe específica
-	            if (cartaEscolhida instanceof Criatura) {
-	                novoDeck.add(new Criatura((Criatura) cartaEscolhida));
-	            } else if (cartaEscolhida instanceof Feitico) {
-	                novoDeck.add(new Feitico((Feitico) cartaEscolhida));
-	            } else if (cartaEscolhida instanceof Encantamento) {
-	                novoDeck.add(new Encantamento((Encantamento) cartaEscolhida));
-	            }
-
-	            System.out.println("Carta adicionada: " + cartaEscolhida.getNome());
-	        } else {
-	            System.out.println("Escolha inválida. Tente novamente.");
-	        }
-	    }
-	    
-	    this.deck = novoDeck;
-	}
 	
 	public void primeiraMao() {
 		for (int i = 0; i < 5; i++) {
@@ -193,9 +156,9 @@ public class Jogador {
 
 	public void aumentarXp() { // lógica de progressão de xp e nível
 		this.xp += 50 + (int)(Math.random() * 51); // a cada partida o jogador pode ganhar de 50 a 100 de xp
-		if (this.xp >= 100 + 2 * this.nivel * this.nivel) {
+		if (this.xp >= 48 + 2 * this.nivel * this.nivel) {
 			this.nivel++;
-			this.xp -= 100 + 2 * this.nivel * this.nivel; 
+			this.xp -= 48 + 2 * this.nivel * this.nivel; 
 			System.out.println("Nível aumentado!");
 		}
 		salvarDados();

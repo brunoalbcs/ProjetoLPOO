@@ -1,8 +1,11 @@
 package principal;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+
+import cartas.Carta;
 
 public class CampoDeBatalha {
 	private Jogador p1, p2;
@@ -11,8 +14,6 @@ public class CampoDeBatalha {
 	public CampoDeBatalha(Jogador p1, Jogador p2) {
 		this.p1 = p1;
 		this.p2 = p2;
-		this.p1.criarDeck(); // criar os decks
-		this.p2.criarDeck();
 		Collections.shuffle(this.p1.getDeck()); // embaralhar os decks
 		Collections.shuffle(this.p2.getDeck());
 		this.p1.primeiraMao(); // cada jogador puxa as 5 primeiras cartas do deck embaralhado
@@ -32,20 +33,24 @@ public class CampoDeBatalha {
 	
 	
 	
-	public void faseDeCombate() {
-        escolherAtacantes();
-        escolherBloqueadoras();
+	public void faseDeCombate(ArrayList<Carta> campoAtaque, ArrayList<Carta> campoDefesa) {
+        escolherAtacantes(campoAtaque);
+        escolherBloqueadoras(campoDefesa);
         resolverCombate();
     }
 
-    public void escolherAtacantes() {
-        System.out.println("Selecionando criaturas para atacar...");
-        // Falta implementar
+    public void escolherAtacantes(ArrayList<Carta> campo) {
+    	if (campo.size() > 0) {
+    		System.out.println("Selecione criaturas para atacar:");
+        	// Falta implementar
+    	}
     }
 
-    public void escolherBloqueadoras() {
-    	System.out.println("Selecionando criaturas para bloquear...");
-    	// Falta implementar
+    public void escolherBloqueadoras(ArrayList<Carta> campo) {
+    	if (campo.size() > 0) {
+    		System.out.println("Selecionando criaturas para bloquear...");
+    		// Falta implementar
+    	}
     }
 
     public void resolverCombate() {
@@ -100,7 +105,7 @@ public class CampoDeBatalha {
 				p1.fasePrincipal();
 				
 				// Fase de combate
-				campo.faseDeCombate();
+				campo.faseDeCombate(p1.getCampo(), p2.getCampo());
 				
 				// Fase final
 				campo.faseFinal();
@@ -121,7 +126,7 @@ public class CampoDeBatalha {
 				p2.fasePrincipal();
 				
 				// Fase de combate
-				campo.faseDeCombate();
+				campo.faseDeCombate(p2.getCampo(), p1.getCampo());
 				
 				// Fase final
 				campo.faseFinal();

@@ -3,14 +3,14 @@ package cartas;
 public class Encantamento extends Carta {
 	private String efeito;
 	
-	public Encantamento(String nome, int custoMana, String efeito) {
-		super(nome, custoMana);
+	public Encantamento(String nome, int custoMana, String efeito, String caminho) {
+		super(nome, custoMana, caminho);
 		this.efeito = efeito;
 	}
 	
 	// contrutor cópia
 	public Encantamento(Encantamento x) {
-		super(x.getNome(), x.getCustoMana());
+		super(x.getNome(), x.getCustoMana(), x.getCaminho());
 		this.efeito = x.getEfeito();
 	}
 	
